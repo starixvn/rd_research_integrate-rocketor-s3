@@ -19,6 +19,9 @@ struct Args {
 
     #[arg(short, long, default_value = "10")]
     max_concurrent_uploads: usize,
+
+    #[arg(short, long, default_value = "upload_summary.json")]
+    report_file: String,
 }
 
 #[tokio::main]
@@ -50,7 +53,7 @@ async fn main() {
         "existing_objects": all_objects_uploaded,
         "existing_files": all_files_uploaded
     });
-    let mut file = File::create("upload_summary.json")
+    let mut file = File::create(args.report_file)
         .await
         .expect("Failed to create file");
     file.write_all(serde_json::to_string(&data).unwrap().as_bytes())
