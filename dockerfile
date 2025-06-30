@@ -6,4 +6,3 @@ COPY --from=builder /usr/local/bin/upload_videos /usr/local/bin/upload_videos
 
 RUN apt-get update && apt-get install -y cifs-utils
 RUN chmod +x /usr/local/bin/upload_videos
-RUN chmod +x /usr/local/bin/export_env.sh
