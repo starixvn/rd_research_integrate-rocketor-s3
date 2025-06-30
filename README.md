@@ -36,6 +36,17 @@ VARS_DATA={
 }
 ```
 
+If use Rocketor, you can config from Gitlab CI Params:
+
+```yml
+config_LOCAL:
+  bucket: "your_s3_bucket"
+  access_id: "your_aws_access_key"
+  secret_key: "your_aws_secret_key"
+  target_folder: "your_target_folder"
+  region: "your_aws_region",
+```
+
 ### 2. Using in Docker
 
 #### Upload Videos Service
@@ -68,11 +79,12 @@ docker-compose run check_sum cargo run --bin check_sum -- \
 
 ### Upload Videos Service
 
-| Parameter                      | Description                | Default  |
-| ------------------------------ | -------------------------- | -------- |
-| `--path, -p`                   | Paths to video files       | Required |
-| `--exclude, -e`                | Files to exclude           | Optional |
-| `--max-concurrent-uploads, -c` | Maximum concurrent uploads | 10       |
+| Parameter                      | Description                | Default             |
+| ------------------------------ | -------------------------- | ------------------- |
+| `--path, -p`                   | Paths to video files       | Required            |
+| `--exclude, -e`                | Files to exclude           | Optional            |
+| `--max-concurrent-uploads, -c` | Maximum concurrent uploads | 10                  |
+| `--report_file, -r`            | Output of report file      | upload_summary.json |
 
 ### Checksum Service
 
