@@ -13,7 +13,7 @@ build_upload_videos:
   stage: build
   script:
     - docker login -u $DOCKER_REG_LOCAL_USERNAME -p $DOCKER_REG_LOCAL_PASSWORD $DOCKER_REG_LOCAL_URL
-    - docker build -t $DOCKER_HUB/upload_videos_s3:rust1.1 -f dockerfile .
+    - docker build -t $DOCKER_HUB/upload_videos_s3:rust1.1 -f upload.dockerfile .
     - docker push $DOCKER_HUB/upload_videos_s3:rust1.1
   when: manual
 
@@ -23,4 +23,20 @@ build_check_sum:
     - docker login -u $DOCKER_REG_LOCAL_USERNAME -p $DOCKER_REG_LOCAL_PASSWORD $DOCKER_REG_LOCAL_URL
     - docker build -t $DOCKER_HUB/check_sum_s3:latest -f checksum.dockerfile .
     - docker push $DOCKER_HUB/check_sum_s3:latest
+  when: manual
+
+build_export_vars:
+  stage: build
+  script:
+    - docker login -u $DOCKER_REG_LOCAL_USERNAME -p $DOCKER_REG_LOCAL_PASSWORD $DOCKER_REG_LOCAL_URL
+    - docker build -t $DOCKER_HUB/export_vars:1.0 -f export-vars.dockerfile .
+    - docker push $DOCKER_HUB/export_vars:1.0
+  when: manual
+
+build_tool-s3:
+  stage: build
+  script:
+    - docker login -u $DOCKER_REG_LOCAL_USERNAME -p $DOCKER_REG_LOCAL_PASSWORD $DOCKER_REG_LOCAL_URL
+    - docker build -t $DOCKER_HUB/tool-s3:1.0 -f dockerfile .
+    - docker push $DOCKER_HUB/tool-s3:1.0
   when: manual

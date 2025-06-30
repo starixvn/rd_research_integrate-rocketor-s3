@@ -1,16 +1,11 @@
-FROM hub.lumigame.com/docker-hub/library/rust:slim as builder
-WORKDIR /app
+FROM hub.lumigame.com/pentagon-base/upload_videos_s3:rust1.1 as builder
 
-COPY . .
-RUN cargo build --release --bin upload_videos
-RUN cargo build --release --bin export_vars
+COPY /usr/local/bin/upload_videos /upload_videos
 
-FROM hub.lumigame.com/docker-hub/library/debian:stable-slim
-COPY --from=builder /app/target/release/upload_videos /usr/local/bin/upload_videos
-COPY --from=builder /app/target/release/export_vars /usr/local/bin/export_vars
-COPY --from=builder /app/export_env.sh /usr/local/bin/export_env.sh
+FROM hub.lumigame.com/pentagon-base/export_vars:1.0
+
+COPY --from=builder /upload_videos /usr/local/bin/upload_videos
 
 RUN apt-get update && apt-get install -y cifs-utils
 RUN chmod +x /usr/local/bin/upload_videos
-RUN chmod +x /usr/local/bin/export_vars
 RUN chmod +x /usr/local/bin/export_env.sh
