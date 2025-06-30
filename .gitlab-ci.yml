@@ -13,8 +13,8 @@ build_upload_videos:
   stage: build
   script:
     - docker login -u $DOCKER_REG_LOCAL_USERNAME -p $DOCKER_REG_LOCAL_PASSWORD $DOCKER_REG_LOCAL_URL
-    - docker build -t $DOCKER_HUB/upload_videos_s3:rust1.0 -f dockerfile .
-    - docker push $DOCKER_HUB/upload_videos_s3:rust1.0
+    - docker build -t $DOCKER_HUB/upload_videos_s3:rust1.1 -f dockerfile .
+    - docker push $DOCKER_HUB/upload_videos_s3:rust1.1
   when: manual
 
 build_check_sum:
