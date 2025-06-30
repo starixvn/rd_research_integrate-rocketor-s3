@@ -1,0 +1,11 @@
+[workspace]
+members = [
+    "libs/s3-integration",
+    "services/check_sum",
+    "services/upload_videos"
+    
+]
+
+[workspace.dependencies]
+s3-integration = { path = "libs/s3-integration" }
+

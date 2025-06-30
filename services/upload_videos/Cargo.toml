@@ -1,0 +1,13 @@
+[package]
+name = "upload_videos"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde_json = "1.0.139"
+dotenv = "0.15"
+tokio = { version = "1.43.0", features = ["full"] }
+clap = { version = "4.0", features = ["derive"] }
+s3-integration = { workspace = true }
+futures = "0.3"
+

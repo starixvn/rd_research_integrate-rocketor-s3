@@ -1,0 +1,11 @@
+services:
+  upload_videos:
+    image: rust:slim
+    working_dir: /app
+    container_name: upload_videos
+
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    command: ["/bin/bash", "-c", "sleep infinity"]

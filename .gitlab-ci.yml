@@ -1,0 +1,26 @@
+default:
+  tags:
+    - docker
+    - k8s
+
+stages:
+  - build
+
+variables:
+  DOCKER_HUB: hub.lumigame.com/pentagon-base
+
+build_upload_videos:
+  stage: build
+  script:
+    - docker login -u $DOCKER_REG_LOCAL_USERNAME -p $DOCKER_REG_LOCAL_PASSWORD $DOCKER_REG_LOCAL_URL
+    - docker build -t $DOCKER_HUB/upload_videos_s3:rust1.0 -f dockerfile .
+    - docker push $DOCKER_HUB/upload_videos_s3:rust1.0
+  when: manual
+
+build_check_sum:
+  stage: build
+  script:
+    - docker login -u $DOCKER_REG_LOCAL_USERNAME -p $DOCKER_REG_LOCAL_PASSWORD $DOCKER_REG_LOCAL_URL
+    - docker build -t $DOCKER_HUB/check_sum_s3:latest -f checksum.dockerfile .
+    - docker push $DOCKER_HUB/check_sum_s3:latest
+  when: manual

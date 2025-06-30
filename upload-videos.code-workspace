@@ -1,0 +1,20 @@
+{
+  "folders": [
+    {
+      "name": "Check Sum",
+      "path": "services/check_sum"
+    },
+    {
+      "name": "Upload Videos",
+      "path": "services/upload_videos"
+    },
+    {
+      "name": "S3 Integration",
+      "path": "libs/s3-integration"
+    },
+    {
+      "name": "Root",
+      "path": "."
+    }
+  ]
+}

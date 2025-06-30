@@ -1,0 +1,10 @@
+[package]
+name = "s3-integration"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+aws-sdk-s3 = "1.76.0"
+aws-config = "1.5.16"
+serde = { version = "1.0.218", features = ["derive"] }
+walkdir = "2.5.0"
