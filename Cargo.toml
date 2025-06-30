@@ -2,8 +2,8 @@
 members = [
     "libs/s3-integration",
     "services/check_sum",
-    "services/upload_videos"
-    
+    "services/upload_videos",
+    "services/export_vars"
 ]
 
 [workspace.dependencies]
